@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <div class="calcFrame">
+      <div class="calcArea">
+        <div class="calcResult">
+          <div class="memoryResultText" data-banked-number><span></span></div>
+          <div class="resultText" data-current-number><span></span></div>
+        </div>
+        <div class="btnGrid">
+          <div class="row" id="topRow">
+            <button class="btn wide" id="clearBtn" data-clear><span>Clear</span></button>
+            <button class="btn wide" id="deleteBtn" data-delete><span>Delete</span></button>
+          </div>
+          <div class="row" id="secondRow">
+            <button class="btn std" data-num="7"><span>7</span></button>
+            <button class="btn std" data-num="8"><span>8</span></button>
+            <button class="btn std" data-num="9"><span>9</span></button>
+            <button class="btn std" data-operator="/"><span>/</span></button>
+          </div>
+          <div class="row" id="thirdRow">
+            <button class="btn std" data-num="4"><span>4</span></button>
+            <button class="btn std" data-num="5"><span>5</span></button>
+            <button class="btn std" data-num="6"><span>6</span></button>
+            <button class="btn std" data-operator="*"><span>*</span></button>
+        </div>
+          <div class="row" id="fourthRow">
+          <button class="btn std" data-num="1"><span>1</span></button>
+          <button class="btn std" data-num="2"><span>2</span></button>
+          <button class="btn std" data-num="3"><span>3</span></button>
+          <button class="btn std" data-operator="-"><span>-</span></button>
+      </div>
+        <div class="row" id="fifthRow">
+        <button class="btn std" data-num="0"><span>0</span></button>
+        <button class="btn std" data-num="."><span>.</span></button>
+        <button class="btn std" data-equals="="><span>=</span></button>
+        <button class="btn std" data-operator="+"><span>+</span></button>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
