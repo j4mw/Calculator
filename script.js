@@ -52,13 +52,17 @@ class Calculator {
         calculation = banked * current;
         break;
       case "/":
-        calculation = banked / current;
-        break;
+        if (current !== 0) {
+          calculation = banked / current;
+          break;
+        }
+        calculation = "nice try";
+        this.selfDestruct();
+      // todo add self destruct function when user divides by 0
       default:
         return;
     }
-    // TODO add feature to only allow 15 total digets, how to round with decimal places
-
+    // TODO add feature to only allow 15 total digits, how to round with decimal places
     this.currentNumber = calculation;
     this.bankedNumber = "";
     this.operation = undefined;
@@ -71,6 +75,12 @@ class Calculator {
       this.bankedNumberText.innerText = "";
     }
   }
+  selfDestruct() {
+    countdown(3);
+    this.clear();
+    this.updateDisplay();
+  }
+  // TODO add self destruct
 }
 
 const numberButton = document.querySelectorAll("[data-num]");
@@ -85,6 +95,15 @@ const bankedNumberText = document.querySelector("[data-banked-number]");
 const calculator = new Calculator(bankedNumberText, currentNumberText);
 
 //event listeners
+
+document.addEventListener("keydown", (e) => {
+  console.log(`${e.key}`);
+
+  // todo add regex for numerical input
+  calculator.appendNumber(e.key);
+  calculator.updateDisplay();
+});
+// todo add symbol event listener
 
 // event listener for all number buttons and to look for displayed text in button
 numberButton.forEach((button) => {
@@ -119,3 +138,23 @@ deleteButton.addEventListener("click", () => {
   calculator.delete();
   calculator.updateDisplay();
 });
+
+function countdown(timeInSeconds) {
+  const interval = setInterval(() => {
+    currentNumberText.innerHTML = `...${timeInSeconds}`;
+    console.log(`${timeInSeconds}...`);
+    timeInSeconds--;
+
+    if (timeInSeconds < 0) {
+      clearInterval(interval);
+      currentNumberText.innerHTML = `:(`;
+    }
+  }, 1000);
+}
+
+function keyboardInput(key) {
+  if (key == 0) {
+    calculator.appendNumber(0);
+    return;
+  }
+}
