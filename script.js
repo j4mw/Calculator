@@ -56,14 +56,17 @@ class Calculator {
           calculation = banked / current;
           break;
         }
-        calculation = "nice try";
         this.selfDestruct();
-      // todo add self destruct function when user divides by 0
       default:
         return;
     }
-    // TODO add feature to only allow 15 total digits, how to round with decimal places
-    this.currentNumber = calculation;
+
+    let n;
+
+    n = calculation.toFixed(5);
+    n = parseFloat(n);
+
+    this.currentNumber = n;
     this.bankedNumber = "";
     this.operation = undefined;
   }
@@ -80,7 +83,6 @@ class Calculator {
     this.clear();
     this.updateDisplay();
   }
-  // TODO add self destruct
 }
 
 const numberButton = document.querySelectorAll("[data-num]");
@@ -97,13 +99,28 @@ const calculator = new Calculator(bankedNumberText, currentNumberText);
 //event listeners
 
 document.addEventListener("keydown", (e) => {
-  console.log(`${e.key}`);
-
-  // todo add regex for numerical input
-  calculator.appendNumber(e.key);
-  calculator.updateDisplay();
+  let re = new RegExp(/^[0-9]+$/); // checks for numbers
+  let re2 = new RegExp(/^(\d+|\*\*|[+\-*/])$/); // checks for symbols
+  let re3 = "Enter"; // check for enter
+  let re4 = "Backspace"; // check for backspace
+  if (e.key.match(re)) {
+    console.log("key");
+    calculator.appendNumber(e.key);
+    calculator.updateDisplay();
+  } else if (e.key.match(re2)) {
+    console.log("symbol");
+    calculator.operationSelect(e.key);
+    calculator.updateDisplay();
+  } else if (e.key.match(re3)) {
+    console.log("enter");
+    calculator.compute();
+    calculator.updateDisplay();
+  } else if (e.key.match(re4)) {
+    console.log("backspace");
+    calculator.delete();
+    calculator.updateDisplay();
+  }
 });
-// todo add symbol event listener
 
 // event listener for all number buttons and to look for displayed text in button
 numberButton.forEach((button) => {
