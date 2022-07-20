@@ -61,12 +61,17 @@ class Calculator {
         return;
     }
 
-    let n;
+    // if (n.includes(".") && n.length > 15) {
+    //   let integers = n.split(".");
+    //   let numberOfIntegers = integers[0].length;
+    //   let numberOfDecimals = integers[1].length;
+    //   console.log(numberOfIntegers);
+    //   console.log(numberOfDecimals);
 
-    n = calculation.toFixed(5);
-    n = parseFloat(n);
+    //   let numberOfDecimalPlaces = 15 - (numberOfIntegers + 1);
+    // }
 
-    this.currentNumber = n;
+    this.currentNumber = calculation;
     this.bankedNumber = "";
     this.operation = undefined;
   }
@@ -99,7 +104,7 @@ const calculator = new Calculator(bankedNumberText, currentNumberText);
 //event listeners
 
 document.addEventListener("keydown", (e) => {
-  let re = new RegExp(/^[0-9]+$/); // checks for numbers
+  let re = new RegExp(/^[\.0-9]+$/); // checks for numbers
   let re2 = new RegExp(/^(\d+|\*\*|[+\-*/])$/); // checks for symbols
   let re3 = "Enter"; // check for enter
   let re4 = "Backspace"; // check for backspace
